@@ -1,7 +1,7 @@
 {
-  "name": "Chrome XForwardedFor Extension",
+  "name": "Chrome Headers Extension",
   "version": "1.0",
-  "description": "An extenstion that sets the X-Forwarded-For header.",
+  "description": "An extenstion that sets the X-Forwarded-For header on all requests.",
   "background_page": "background.html",
   "icons": {
 	"16": "icon16.png",

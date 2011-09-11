@@ -1,0 +1,47 @@
+<html>
+	<style>
+		h1 {
+			font-size: 16px;
+		}
+		
+		#xforward-form {
+			width: 300px;
+			height: 25px;
+			margin: 0;
+		}
+		
+		#setXForwardedFor {
+			input {
+				width: 250px;
+			}
+		}
+	</style>
+	<body>
+		<h2>Current X-Forwarded-For</h2>
+		<form id="xforward-form" name="setforwarded" onsubmit="updateHeader()">
+			<input type="text" name="forwardedfor" />
+			<input type="submit" name="submit" value="Save" />
+			<input type="button" name="submit" value="Reset" onclick="resetHeader()" />
+		</form>
+	</body>
+	<script>
+		var forwardedFor = document.forms["setforwarded"]["forwardedfor"];
+			
+		forwardedFor.value = localStorage['x-forwarded-for'] || "";
+		
+		function updateHeader() {
+			localStorage['x-forwarded-for'] = forwardedFor.value;
+			exit();
+		}
+		
+		function resetHeader() {
+			localStorage.removeItem('x-forwarded-for');
+			exit();
+		}
+		
+		function exit() {
+			chrome.tabs.executeScript(null, { 'code': 'window.location.reload()'});
+			window.close();
+		}
+	</script>
+</html>

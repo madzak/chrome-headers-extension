@@ -1,0 +1,23 @@
+<html>
+	<script>
+		chrome.experimental.webRequest.onBeforeSendHeaders.addListener(function(details) {
+			var headers = details.requestHeaders;
+			if( !localStorage['x-forwarded-for'] ) {
+				return;
+			}
+			for(var i = 0, l = headers.length; i < l; ++i) {
+				if( headers[i].name == 'X-Forwarded-For' ) {
+					break;
+				}
+			}
+			
+			if(i < headers.length) {
+				headers[i].value = localStorage['x-forwarded-for'];
+			} else {
+				headers.push({'name':'X-Forwarded-For','value':localStorage['x-forwarded-for']})
+			}
+				
+			return {requestHeaders: headers};
+		}, undefined, ['requestHeaders','blocking']);
+	</script>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "Chrome XForwardedFor Extension",
+  "version": "1.0",
+  "description": "An extenstion that sets the X-Forwarded-For header.",
+  "background_page": "background.html",
+  "icons": {
+	"16": "icon16.png",
+	"48": "icon48.png",
+	"128": "icon128.png"
+  },
+  "browser_action": {
+    "default_icon": "icon19.png",
+	"popup": "interface.html"
+  },
+  "permissions": [
+	"tabs",
+	 "http://*/",
+	 "https://*/",
+	"experimental"
+  ]
+}
